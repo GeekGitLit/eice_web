@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전정통 시뮬레이션</title>
+  <!-- CSS 파일 링크 -->
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<body>
+  <header>
+    <div class="header-content">
+      <h1>세종대학교 전자정보통신공학과</h1>
+    </div>
+  </header>
+  <!-- 시작 페이지 -->
+  <div id="start-page" class="container">
+    <h1>밸런스 게임</h1>
+    <h3>당신에게 맞는 전자정보통신공학과 트랙은?</h3>
+    <div id="start-button">
+      <button onclick="startGame()">START!</button>
+    </div>
+  </div>
+  <div id="question-container"></div>
+  <script src="src/script.js"></script>
+  <footer>
+    <div class="footer-content">
+      <h1>전자정보통신공학과 제6대 학생회 노드</h1>
+      <img src="img/logo.png" alt="logo" class="footer-logo">
+    </div>
+  </footer>
+  <div id="sidebar" class="sidebar">
+    <h3>트랙별 추이</h3>
+    <ul>
+      <li id="elecCount">전자 : 0명</li>
+      <li id="infoCount">정보 : 0명</li>
+      <li id="commCount">통신 : 0명</li>
+    </ul>
+  </div>
+</body>
+</html>
