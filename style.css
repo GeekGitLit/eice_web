@@ -7,7 +7,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('tbd.jpg');
+  background-image: url('../img/tbd.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -99,6 +99,15 @@ button:hover {
   min-width: 800px;
 }
 
+#fullscreenButton {
+  height: 100%;
+  width: 15px;
+  position: fixed;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: help;
+}
+
 .result {
   margin: 20px 0;
 }
@@ -177,7 +186,7 @@ button:hover {
   background-color: #007BFF;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   height: 60px;
   width: 150px;
@@ -231,7 +240,7 @@ button:hover {
 
 /* 헤더 스타일 */
 header {
-  background-color: #333; /* 헤더의 배경색을 어두운 회색(#333)으로 설정 */
+  background-color: rgba(255, 255, 255, 0.25); /* 헤더의 배경색을 어두운 회색(#333)으로 설정 */
   color: white; /* 헤더 안의 텍스트 색상을 흰색으로 설정 */
   padding: 3px 20px; /* 헤더 안의 모든 요소에 위, 아래, 좌, 우 10px의 여백 추가 */
   text-align: center; /* 텍스트를 가운데 정렬 */
@@ -273,7 +282,7 @@ header h1 {
 
 /* 푸터 스타일 */
 footer {
-  background-color: #333; /* 푸터의 배경색을 어두운 회색(#333)으로 설정 */
+  background-color: rgba(255, 255, 255, 0.25); /* 푸터의 배경색을 어두운 회색(#333)으로 설정 */
   color: white; /* 푸터 안의 텍스트 색상을 흰색으로 설정 */
   padding: 0 20px; /* 좌우 20px의 패딩 추가 (세로 패딩 제거) */
   position: fixed; /* 푸터를 페이지 하단에 고정 */
@@ -299,10 +308,10 @@ footer {
 /* 푸터 안의 텍스트 스타일 */
 footer h1 {
   margin-bottom: 3px; /* 기본 여백 제거 */
-  font-size: 16px; /* 푸터 텍스트 크기 */
+  font-size: 20px; /* 푸터 텍스트 크기 */
   text-align: center;
   color: #CCCCCC;
-  margin-right: 10px; /* 이미지와 텍스트 사이에 여백 추가 */
+  margin-right: 20px; /* 이미지와 텍스트 사이에 여백 추가 */
 }
 
 /* 푸터 이미지 스타일 */
@@ -314,10 +323,10 @@ footer h1 {
 
 .sidebar {
   position: fixed;
-  top: 20%;
+  bottom: 10%;
   right: 20px;
-  width: 150px;
-  padding: 15px;
+  width: 90px;
+  padding: 5px 15px;
   background-color: #f8f8f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -327,12 +336,14 @@ footer h1 {
 .sidebar h3 {
   font-size: 1.2rem;
   margin-bottom: 10px;
+  margin-top: 5px;
   color: #333;
 }
 
 .sidebar ul {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 5px;
 }
 
 .sidebar li {
