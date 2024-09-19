@@ -93,7 +93,6 @@ const trackDescriptions = {
 let currentQuestionIndex = 0;
 let selectedAnswers = Array(questions.length).fill(null); // 사용자가 선택한 답변을 저장하는 배열
 
-
 // 각 분야에 대한 점수를 저장하는 객체
 const scores = {
   "전자": 0,
@@ -107,16 +106,47 @@ const totalScores = {
   "통신": 0
 }
 
+// 전체 화면 모드로 전환하는 함수
+function toggleFullscreen() {
+  // 브라우저가 전체 화면 모드를 지원하는지 확인
+  if (!document.fullscreenElement) {
+    // 페이지 전체를 전체 화면 모드로 전환
+    document.documentElement.requestFullscreen().catch((err) => {
+      alert(`전체 화면 모드로 전환할 수 없습니다: ${err.message}`);
+    });
+  } else {
+    // 전체 화면 모드를 해제
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
 // 'START!' 버튼을 클릭했을 때 게임을 시작하는 함수
 function startGame() {
   // 시작 페이지를 숨기고 질문 컨테이너를 보여줌
   document.getElementById('start-page').style.display = 'none';
   document.getElementById('question-container').style.display = 'block';
+  document.getElementById('fullscreenButton').style.display = 'none';
   // 첫 번째 질문을 로드
   loadQuestion();
 }
 
-// 현재 질문을 화면에 표시하는 함수
+// 버튼 클릭 시 전체 화면 모드를 토글
+document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+
+// 첫 페이지에서만 전체 화면 버튼 보이게 설정
+window.addEventListener('load', function() {
+  const fullscreenButton = document.getElementById('fullscreenButton');
+
+  // 첫 페이지일 때만 버튼 표시
+  if (document.getElementById('start-page').style.display !== 'none') {
+    fullscreenButton.style.display = 'block';
+  } else {
+    fullscreenButton.style.display = 'none';
+  }
+});
+
 // 현재 질문을 화면에 표시하는 함수
 function loadQuestion() {
   const questionContainer = document.getElementById("question-container");
@@ -156,25 +186,25 @@ function loadQuestion() {
   nextButton.innerText = "다음으로";
   nextButton.disabled = selectedAnswers[currentQuestionIndex] === null;
   nextButton.onclick = goToNextQuestion;
-  if (currentQuestionIndex === questions.length - 1) {
-    nextButton.disabled = true;
-  }
   navigationContainer.appendChild(nextButton);
 
   questionContainer.appendChild(navigationContainer);
 }
 
-// '이전' 버튼 클릭 시 호출되는 함수
-function goBack() {
-  if (currentQuestionIndex > 0) {
-    const previousAnswer = selectedAnswers[currentQuestionIndex - 1];
-    const previousArea = questions[currentQuestionIndex - 1].choices[previousAnswer].track;
-    if (scores.hasOwnProperty(previousArea)) {
-      scores[previousArea] -= 1;
-    }
-    currentQuestionIndex--;
-    loadQuestion();
+// 사용자가 선택한 답변에 따라 점수를 증가시키고, 다음 질문으로 바로 넘어가는 함수
+function selectAnswer(track, choiceIndex) {
+  const previousAnswer = selectedAnswers[currentQuestionIndex];
+
+  if (previousAnswer !== null) {
+    const previousTrack = questions[currentQuestionIndex].choices[previousAnswer].track;
+    scores[previousTrack] -= 1;  // 이전 선택했던 트랙의 점수를 감소
   }
+
+  scores[track] += 1;  // 새로운 선택한 트랙의 점수를 증가
+  selectedAnswers[currentQuestionIndex] = choiceIndex;
+
+  // '다음으로' 버튼을 활성화하고 바로 다음 질문으로 이동
+  goToNextQuestion();
 }
 
 // '다음으로' 버튼 클릭 시 호출되는 함수
@@ -182,29 +212,21 @@ function goToNextQuestion() {
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
     loadQuestion();
+  } else {
+    showResults();
   }
 }
 
-// 사용자가 선택한 답변에 따라 점수를 증가시키고, 다음 질문으로 넘어가는 함수
-function selectAnswer(track, choiceIndex) {
-  selectedAnswers[currentQuestionIndex] = choiceIndex;
-  // 선택한 관련 분야의 점수를 증가시킴
-  if (scores.hasOwnProperty(track)) {
-    scores[track] += 1;
-  }
-
-  const nextButton = document.querySelector(".next-button");
-  nextButton.disabled = false;
-  // 다음 질문으로 인덱스 이동
-  currentQuestionIndex++;
-  // 더 많은 질문이 있는지 확인
-  if (currentQuestionIndex < questions.length) {
-    // 다음 질문 로드
+// '이전으로' 버튼 클릭 시 호출되는 함수
+function goBack() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
     loadQuestion();
-  } else {
-    // 질문이 끝났다면 결과 화면 표시
-    showResults();
   }
+}
+
+function updateTrackScores(track) {
+  scores = { ...previousScores };
 }
 
 // 최종 점수를 퍼센트로 계산하고 가장 높은 트랙을 보여주는 함수
@@ -298,9 +320,19 @@ function reset() {
   scores["정보"] = 0;
   scores["통신"] = 0;
 
+  selectedAnswers = Array(questions.length).fill(null);
+
+  const nextButton = document.querySelector(".next-button");
+  if (nextButton) {
+    nextButton.disabled = true;
+  }
+
   // 질문 컨테이너를 숨기고 시작 페이지를 보여줌
   document.getElementById('question-container').style.display = 'none';
   document.getElementById('start-page').style.display = 'block';
+
+  // 다시 첫 페이지로 돌아오면 전체 화면 버튼 다시 보이게 함
+  document.getElementById('fullscreenButton').style.display = 'block';
 }
 
 // 각 분야에 대한 색상을 반환하는 함수
