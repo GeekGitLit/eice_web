@@ -147,6 +147,14 @@ window.addEventListener('load', function() {
   }
 });
 
+// DOM이 완전히 로드된 후에 전체 화면 버튼에 이벤트 리스너를 추가
+document.addEventListener('DOMContentLoaded', function () {
+  const fullscreenButton = document.getElementById('fullscreenButton');
+  if (fullscreenButton) {
+    fullscreenButton.addEventListener('click', toggleFullscreen);
+  }
+});
+
 // 현재 질문을 화면에 표시하는 함수
 function loadQuestion() {
   const questionContainer = document.getElementById("question-container");
