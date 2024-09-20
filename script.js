@@ -132,26 +132,18 @@ function startGame() {
   loadQuestion();
 }
 
-// 버튼 클릭 시 전체 화면 모드를 토글
-document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
-
 // 첫 페이지에서만 전체 화면 버튼 보이게 설정
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
   const fullscreenButton = document.getElementById('fullscreenButton');
 
-  // 첫 페이지일 때만 버튼 표시
-  if (document.getElementById('start-page').style.display !== 'none') {
-    fullscreenButton.style.display = 'block';
-  } else {
-    fullscreenButton.style.display = 'none';
-  }
-});
-
-// DOM이 완전히 로드된 후에 전체 화면 버튼에 이벤트 리스너를 추가
-document.addEventListener('DOMContentLoaded', function () {
-  const fullscreenButton = document.getElementById('fullscreenButton');
   if (fullscreenButton) {
     fullscreenButton.addEventListener('click', toggleFullscreen);
+    // 첫 페이지일 때만 버튼 표시
+    if (document.getElementById('start-page').style.display !== 'none') {
+      fullscreenButton.style.display = 'block';
+    } else {
+      fullscreenButton.style.display = 'none';
+    }
   }
 });
 
