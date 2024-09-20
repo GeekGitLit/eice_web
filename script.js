@@ -85,7 +85,7 @@ const trackDescriptions = {
   },
   "통신": {
     description: "통신공학은 무선 및 유선 통신 기술을 연구하는 학문입니다.",
-    image: "comm.png"  // 원하는 이미지 파일 경로
+    image: "image.png"  // 원하는 이미지 파일 경로
   }
 };
 
