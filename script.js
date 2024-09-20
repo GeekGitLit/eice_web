@@ -77,15 +77,15 @@ const questions = [
 const trackDescriptions = {
   "전자": {
     description: "전자공학은 전기와 전자에 관한 원리를 바탕으로 한 다양한 응용 분야를 다루는 학문입니다.",
-    image: "img/elec.png"  // 원하는 이미지 파일 경로
+    image: "elec.png"  // 원하는 이미지 파일 경로
   },
   "정보": {
     description: "정보통신공학은 데이터를 수집, 처리, 전송하는 시스템을 설계하는 학문입니다.",
-    image: "img/info.png"  // 원하는 이미지 파일 경로
+    image: "info.png"  // 원하는 이미지 파일 경로
   },
   "통신": {
     description: "통신공학은 무선 및 유선 통신 기술을 연구하는 학문입니다.",
-    image: "img/image.png"  // 원하는 이미지 파일 경로
+    image: "comm.png"  // 원하는 이미지 파일 경로
   }
 };
 
