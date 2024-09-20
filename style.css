@@ -7,7 +7,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('bg.jpeg');
+  background-image: url('../img/bg.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,6 +20,7 @@ html, body {
 
 body {
   padding-top: 60px;
+  overflow: hidden;
 }
 
 /* 텍스트와 버튼을 감싸는 컨테이너 */
@@ -27,6 +28,15 @@ body {
   text-align: center;  /* 텍스트와 버튼을 중앙 정렬 */
 }
 
+.container h1 {
+  color: white;
+  font-size: 10rem;
+}
+
+.container h3 {
+  font-size: 3rem;
+  margin-top: -10px;
+}
 /* 제목 스타일 */
 h1 {
   color: #dfdfdf;
@@ -43,7 +53,7 @@ h2 {
 }
 
 h3 {
-  color: #ffd2d2;
+  color: rgb(255, 210, 210);
   font-size: 1.5rem;
   margin-bottom: 40px;
   font-weight: lighter;
@@ -57,7 +67,7 @@ h3 {
 button {
   font-family: "Jua", sans-serif;
   font-weight: lighter;
-  background-color: #007BFF;
+  background-color: rgb(0, 123, 255);
   color: white;
   padding: 30px; /* 버튼의 크기 조정 */
   font-size: 28px; /* 버튼 글씨 크기 */
@@ -70,12 +80,12 @@ button {
   height: 10vw;
   word-wrap: break-word;
   margin: 0 auto; /* 버튼을 중앙에 정렬 */
-  margin-top: 10px; /* 버튼과 상단 텍스트 간격을 동일하게 설정 */
+  margin-top: 0; /* 버튼과 상단 텍스트 간격을 동일하게 설정 */
   margin-bottom: 40px; /* 버튼 아래 간격 추가 */
 }
 
 #start-button button {
-  font-size: 45px;
+  font-size: 98px;
 }
 /* 마우스를 올렸을 때 버튼 색상 변경 */
 button:hover {
@@ -97,6 +107,7 @@ button:hover {
   width: 90%;
   max-width: 1400px;
   min-width: 800px;
+  max-height: 730px;
 }
 
 #fullscreenButton {
@@ -104,7 +115,7 @@ button:hover {
   width: 15px;
   position: fixed;
   left: 0px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0);
   cursor: help;
 }
 
@@ -179,7 +190,6 @@ button:hover {
 }
 
 .restart-button {
-  margin-top: 20px;
   padding: 5px 15px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -240,7 +250,7 @@ button:hover {
 
 /* 헤더 스타일 */
 header {
-  background-color: rgba(255, 255, 255, 0.25); /* 헤더의 배경색을 어두운 회색(#333)으로 설정 */
+  background-color: rgba(255, 255, 255, 0.1); /* 헤더의 배경색을 어두운 회색(#333)으로 설정 */
   color: white; /* 헤더 안의 텍스트 색상을 흰색으로 설정 */
   padding: 3px 20px; /* 헤더 안의 모든 요소에 위, 아래, 좌, 우 10px의 여백 추가 */
   text-align: center; /* 텍스트를 가운데 정렬 */
@@ -256,10 +266,11 @@ header {
   align-items: center;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 1000;
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 .header-content {
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -282,14 +293,14 @@ header h1 {
 
 /* 푸터 스타일 */
 footer {
-  background-color: rgba(255, 255, 255, 0.25); /* 푸터의 배경색을 어두운 회색(#333)으로 설정 */
+  background-color: rgba(255, 255, 255, 0.3); /* 푸터의 배경색을 어두운 회색(#333)으로 설정 */
   color: white; /* 푸터 안의 텍스트 색상을 흰색으로 설정 */
-  padding: 0 20px; /* 좌우 20px의 패딩 추가 (세로 패딩 제거) */
+  padding: 20px 20px; /* 좌우 20px의 패딩 추가 (세로 패딩 제거) */
   position: fixed; /* 푸터를 페이지 하단에 고정 */
   bottom: 0; /* 페이지의 가장 아래에 위치 */
   left: 0; /* 페이지의 왼쪽에 맞춰 고정 */
   width: 100%; /* 푸터가 페이지 전체 너비를 차지하도록 설정 */
-  height: 60px; /* 푸터의 높이를 60px로 고정 */
+  height: 30px; /* 푸터의 높이를 60px로 고정 */
   z-index: 1000; /* 다른 콘텐츠보다 위에 오도록 z-index 값을 높게 설정 */
   display: flex; /* 플렉스 박스를 사용해 정렬 */
   justify-content: center; /* 가로 축을 기준으로 중앙 정렬 */
@@ -310,7 +321,7 @@ footer h1 {
   margin-bottom: 3px; /* 기본 여백 제거 */
   font-size: 20px; /* 푸터 텍스트 크기 */
   text-align: center;
-  color: #CCCCCC;
+  color: #db6f80;
   margin-right: 20px; /* 이미지와 텍스트 사이에 여백 추가 */
 }
 
@@ -349,4 +360,9 @@ footer h1 {
 .sidebar li {
   font-size: 1rem;
   margin: 5px 0;
+}
+
+.topTrack {
+  border-radius: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
