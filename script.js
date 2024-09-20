@@ -77,15 +77,15 @@ const questions = [
 const trackDescriptions = {
   "전자": {
     description: "전자공학은 전기와 전자에 관한 원리를 바탕으로 한 다양한 응용 분야를 다루는 학문입니다.",
-    image: "path/to/electronics_image.jpg"  // 원하는 이미지 파일 경로
+    image: "img/elec.png"  // 원하는 이미지 파일 경로
   },
   "정보": {
     description: "정보통신공학은 데이터를 수집, 처리, 전송하는 시스템을 설계하는 학문입니다.",
-    image: "path/to/information_image.jpg"  // 원하는 이미지 파일 경로
+    image: "img/info.png"  // 원하는 이미지 파일 경로
   },
   "통신": {
     description: "통신공학은 무선 및 유선 통신 기술을 연구하는 학문입니다.",
-    image: "path/to/communication_image.jpg"  // 원하는 이미지 파일 경로
+    image: "img/image.png"  // 원하는 이미지 파일 경로
   }
 };
 
@@ -132,18 +132,26 @@ function startGame() {
   loadQuestion();
 }
 
+// 버튼 클릭 시 전체 화면 모드를 토글
+document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+
 // 첫 페이지에서만 전체 화면 버튼 보이게 설정
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
   const fullscreenButton = document.getElementById('fullscreenButton');
 
+  // 첫 페이지일 때만 버튼 표시
+  if (document.getElementById('start-page').style.display !== 'none') {
+    fullscreenButton.style.display = 'block';
+  } else {
+    fullscreenButton.style.display = 'none';
+  }
+});
+
+// DOM이 완전히 로드된 후에 전체 화면 버튼에 이벤트 리스너를 추가
+document.addEventListener('DOMContentLoaded', function () {
+  const fullscreenButton = document.getElementById('fullscreenButton');
   if (fullscreenButton) {
     fullscreenButton.addEventListener('click', toggleFullscreen);
-    // 첫 페이지일 때만 버튼 표시
-    if (document.getElementById('start-page').style.display !== 'none') {
-      fullscreenButton.style.display = 'block';
-    } else {
-      fullscreenButton.style.display = 'none';
-    }
   }
 });
 
@@ -258,7 +266,7 @@ function showResults() {
     const topTrackInfo = trackDescriptions[topTrack];
     questionContainer.innerHTML += `
       <h3 id="topTrack">${topTrack} 트랙</h3>
-      <img src="${topTrackInfo.image}" alt="${topTrack} 이미지" style="width: 100%; max-width: 300px;">
+      <img src="${topTrackInfo.image}" alt="${topTrack} 이미지" class="topTrack" style="width: 100%; max-width: 300px;">
       <p>${topTrackInfo.description}</p>
     `;
   }
